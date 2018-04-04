@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>aaa</title>
+	<style type="text/css">
+		.wrap{
+			border: 1px solid black;
+			zoom: 1;
+		}
+		.wrap:after{
+			display: block;
+			content: '';
+			height: 0;
+			visibility: hidden;
+			clear: both;
+		}
+		.chd{
+			width: 100px;
+			height: 100px;
+			border: 1px solid red;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+<div class="wrap">
+	<div class="chd"></div>
+	<div class="chd"></div>
+	<div class="chd"></div>
+</div>
+</body>
+<script type="text/javascript">
+	/*
+	var o1 = {}; 
+var o2 =new Object();
+var o3 = new f1();
+
+function f1(){}; 
+var f2 = function(){};
+var f3 = new Function('str','console.log(str)');
+
+console.log(typeof Object); //function f
+console.log(typeof Function); //function  function
+
+console.log(typeof f1); //function  f
+console.log(typeof f2); //function f
+console.log(typeof f3); //function   f
+
+console.log(typeof o1); //object o
+console.log(typeof o2); //object o
+console.log(typeof o3); //object  o
+
+
+var Person = function(name, age, job) {
+ this.name = name;
+ this.age = age;
+ this.job = job;
+ this.sayName = function() { alert(this.name) } 
+}
+var person1 = new Person('Zaxlct', 28, 'Software Engineer');
+var person2 = new Person('Mick', 23, 'Doctor');
+var p3 = Person('pp3', 1, 'job3');
+
+console.log(person1.constructor.toString());
+
+
+var Person = function(name){
+	this.name = name; // tip: 当函数执行时这个 this 指的是谁？
+};
+Person.prototype.getName = function(){
+	return this.name;  // tip: 当函数执行时这个 this 指的是谁？
+}
+var person1 = new Person('Mick');
+
+Person.prototype.sayHello = function(){console.log('hello')};
+person1.getName(); //Mick
+person1.sayHello();
+
+
+
+// 1.利用构造器+apply 实现继承
+var Person = function(name){
+	this.name = name;
+	this.type = 'person';
+	this.sayHello = function(){console.log('hello');};
+};
+
+var Man = function(name){
+	Person.apply(this, arguments);
+	this.sayName = function(){console.log(this.name)}
+};
+
+var p = new Person('p1');
+var m = new Man('m1');
+// 2.利用prototype，将子类prototype指向父类的一个实例
+// 这种方式需要注意：公共的（共享的）属性需要写在prototype中
+var Person = function(n){
+	this.n = n;
+};
+Person.prototype.sayName = function(){console.log('hello');};
+Person.prototype.type = 'p';
+var Man = function(n){
+	this.n = n;
+};
+Man.prototype = new Person();
+Man.prototype.constructor = Man;
+
+var p = new Person('p');
+var m = new Man('mm');
+console.log(p);
+console.log(m);
+
+//3.不通过父类实例，直接继承父类的prototype
+var P = function(n){this.n = n;};
+P.prototype.type = 'p';
+
+var M = function(n){this.n = n;};
+M.prototype = P.prototype;
+M.prototype.constructor = M;
+
+var p = new P('p');
+var m = new M('m');
+console.log(p);
+console.log(m);
+
+//4.利用空对象作为中介，解决3中的缺点（子类与父类是同一个prototype）
+var P = function(n){this.n = n;};
+P.prototype.type = 'p';
+
+var M = function(n){this.n = n;};
+var temp = function(){};
+temp.prototype = P.prototype;
+M.prototype = new temp();
+delete temp;
+M.prototype.constructor = M;
+
+var p = new P('p');
+var m = new M('m');
+console.log(p);
+console.log(m);
+
+
+
+// 5.拷贝继承
+var P = function(n){this.n = n;};
+P.prototype.type = 'p';
+
+var M = function(n){this.n = n;};
+var p = P.prototype,
+	m = M.prototype;
+function deepClone(m, p){
+	for(var i in p){
+		if(typeof p[i] === 'object'){
+			m[i] = p[i].constructor === Array ? [] : {};
+			deepClone(m[i], p[i]);
+		}else{
+			m[i] = p[i];
+			
+		}
+	}
+	return m;
+}
+deepClone(m, p);
+var p = new P('p');
+var m = new M('m');
+console.log(p);
+console.log(m);
+
+
+//6.这个不常用，不属于构造函数继承
+var P = {
+	type: 'p',
+	book: [2,3,4],
+	sayHello: function(){console.log('hello');}
+};
+
+var myclone = function(P){
+	var temp = function(){};
+	temp.prototype = P;
+	return new temp();
+};
+var M = myclone(P);
+M.book.push(5);
+
+
+
+console.log(P);
+console.log(M);
+
+*/
+
+
+// 面试题：
+var input = [3,5,7];
+var index = 0,
+	num = [];
+while(index < 100){
+	num.push(++index);
+}
+
+var rule0 = function(n){
+	if(n % input[0] === 0){
+		return 'Fizz';
+	}
+	return false;
+}
+
+var rule1 = function(n){
+	if(n % input[1] === 0){
+		return 'Buzz';
+	}
+	return false;
+}
+
+var rule2 = function(n){
+	if(n % input[2] === 0){
+		return 'Whizz';
+	}
+	return false;
+}
+
+var rule3 = function(n){
+	if(rule0(n) && rule1(n)){
+		return 'FizzBuzz';
+	}
+	return false;
+}
+
+var rule4 = function(n){
+	if(rule0(n) && rule2(n)){
+		return 'FizzWhizz';
+	}
+	return false;
+}
+
+var rule5 = function(n){
+	if(rule1(n) && rule2(n)){
+		return 'BuzzWhizz';
+	}
+	return false;
+}
+
+var rule6 = function(n){
+	if(rule0(n) && rule1(n) && rule2(n)){
+		return 'FizzBuzzWhizz';
+	}
+	return false;
+}
+
+var rule7 = function(n){
+	if(n.toString().indexOf(input[0]) >= 0){
+		return 'Fizz';
+	}
+	return false;
+}
+var rules = [rule0,rule1, rule2,rule3,rule4,rule5,rule6,rule7];
+var t, result;
+for (var i = 0; i < num.length; i++) {
+	t = num[i];
+	result = rule7(t) || rule6(t) || rule5(t) || rule4(t) || rule3(t) || rule2(t) || rule1(t) || rule0(t) || t;
+	num[i] = result;
+}
+console.log(num);
+</script>
+</html>

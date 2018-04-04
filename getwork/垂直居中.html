@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>垂直居中</title>
+	<style type="text/css">
+		.wrap{
+			border: 1px solid blue;
+			width: 800px;
+			height: 600px;
+
+			background-color: #ff0000\0;
+			position: relative;
+		}
+		.inner{
+			width: 300px;
+			height: 200px;
+			border: 1px solid red;
+		
+			position: absolute;
+			left: 0;
+			/*top: 50%;*/
+			/*transform: translate(0, -50%);*/
+		}
+		.inner.mousedown{
+			cursor: move;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+			<div class="inner"></div>
+	</div>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		 outerDiv = document.getElementsByClassName('wrap')[0];
+
+		 innerDiv = document.getElementsByClassName('inner')[0];
+		innerDiv.state = {
+			isMouseDown: false
+		};
+
+		var m = {
+			old: {},
+			cur: {},
+			maxLeft: outerDiv.clientWidth - innerDiv.offsetWidth,
+			minLeft: 0
+		};
+		function setCSSLeft(el, num){
+			if(!el){return}
+			el.style.left = num + 'px';
+		}
+		function toggleClass(el, clazz){
+			var reg = new RegExp(clazz, 'g');
+			var str = el.getAttribute('class');
+			if(reg.test(str)){
+				str = str.replace(clazz, '');
+			}else{
+				str = str + (/\s$/.test(str) ? "" : " ") + clazz;
+			}
+			el.setAttribute('class', str);
+		}
+
+		function removeClass(el, clazz){
+			var str = el.getAttribute('class');
+			str = str.replace(clazz, '');
+			el.setAttribute('class', str);
+		}
+		
+		
+		innerDiv.addEventListener('mousedown', function(e){
+			innerDiv.state.isMouseDown = true;
+			m.old.x = e.clientX;
+			
+			innerDiv.innerText = "x: " + e.clientX + " y: " + e.clientY + ' left: ' + (m.old.left || 0);
+			toggleClass(innerDiv, "mousedown");
+		});
+
+		innerDiv.addEventListener('mousemove', function(e){
+			if(!innerDiv.state.isMouseDown){
+				return false;
+			}
+			m.cur.x = e.clientX;
+			if(!m.old.left){m.old.left = 0}
+			setCSSLeft(innerDiv, Math.max(m.minLeft, Math.min(m.maxLeft, (m.old.left + m.cur.x - m.old.x))) );
+			// toggleClass(innerDiv, "mousemove");
+		});
+
+		innerDiv.addEventListener('mouseup', function(e){
+			innerDiv.state.isMouseDown = false;
+			m.old.x = e.clientX;
+			m.old.left = parseInt(innerDiv.style.left.replace('px', ''), 10);
+			innerDiv.innerText = "x: " + e.clientX + " y: " + e.clientY + ' left: ' + (m.old.left || 0);
+			toggleClass(innerDiv, "mousedown");
+		});
+
+		innerDiv.addEventListener('mouseout', function(e){
+			innerDiv.state.isMouseDown = false;
+			m.cur.x = e.clientX;
+			if(!m.old.left){m.old.left = 0}
+			setCSSLeft(innerDiv, Math.max(m.minLeft, Math.min(m.maxLeft, (m.old.left + m.cur.x - m.old.x))) );
+
+			m.old.x = e.clientX;
+			m.old.left = parseInt(innerDiv.style.left.replace('px', ''), 10);
+			removeClass(innerDiv, "mousedown");
+		});
+
+
+
+	}
+function format(str, paramsAry){
+	var reg = /\{(\d+)\}/g;
+	str = str.replace(reg, function(matchs, num){
+		num = parseInt(num, 10);
+		return paramsAry[num];
+	});
+	return str;
+}
+var bb =format('abc{0}fasdg{1}asdga', [' name ', ' age ']);
+console.log(bb);
+</script>
+</html>

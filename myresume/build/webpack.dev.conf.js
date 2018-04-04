@@ -44,6 +44,11 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       poll: config.dev.poll,
     }
   },
+ /* postcss: [
+    require('autoprefixer')({
+      broswers: ['last 10 versions']
+    })
+  ],*/
   plugins: [
     new webpack.DefinePlugin({
       'process.env': require('../config/dev.env')
@@ -55,7 +60,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      inject: true
+      inject: true,
+      minify:{
+        removeComments: true
+      }
     }),
     // copy custom static assets
     new CopyWebpackPlugin([

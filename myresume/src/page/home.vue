@@ -17,10 +17,5 @@
 </script>
 
 <style type="text/css">
-	a{
-		text-decoration: none;
-	}
-	a.router-link-active{
-		color: #3366ff;
-	}
+	
 </style>

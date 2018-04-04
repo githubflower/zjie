@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>jquery复习</title>
+	<meta content="width=device-width user-scable=no"/>
+	<!-- input tel=false -->
+	<!-- input email=false -->
+	<!-- touch-ico... -->
+	<style type="text/css">
+		.wrap{
+			border: 1px solid blue;
+			width: 800px;
+			height: 600px;
+
+			position: relative;
+		}
+		.inner{
+			width: 300px;
+			height: 200px;
+			border: 1px solid red;
+		
+			position: absolute;
+			left: 0;
+			/*top: 50%;*/
+			/*transform: translate(0, -50%);*/
+		}
+		ul li:first-child{
+			color: red;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<div style="height:900px;"></div>
+		<div class="inner"></div>
+	</div>
+</body>
+<script type="text/javascript" src="./jquery-3.3.1.js"></script>
+<script type="text/javascript">
+	jQuery(function(){
+		jQuery('.wrap').on('click', '.inner', function(e){
+			// debugger;
+		})
+
+
+		var aa = function(){
+			alert(3);
+		}();
+	})
+
+
+
+</script>
+</html>

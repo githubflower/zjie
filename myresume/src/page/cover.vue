@@ -12,6 +12,7 @@
 	    <div class="detail-wrap">
 	    	<div class="detail" @click="jump2detail">了解更多</div>
 	    </div>
+	    <div class="test-flex"></div>
 	    <!-- <router-link :to="'/detail'">more</router-link> -->
     </div>
 </template>
@@ -32,15 +33,24 @@
 	}
 </script>
 
-<style>
+<style lang="less">
+	@blue: #3366ff;
+	.border-radius(@radius: 3px){
+		border-radius: @radius;
+	}
+	.center{
+		text-align: center;
+	}
 	.cover{
 		margin-top: 60px;
 	}
-	.logo-wrap img{
-	  width: 50px;
-	  height: 50px;
-	  border-radius: 28px;
-	  border: 3px solid #42b983;
+	.logo-wrap {
+		img{
+		  width: 50px;
+		  height: 50px;
+		  border: 3px solid #42b983;
+		  .border-radius(28px);
+		}
 	}
 
 	@keyframes zoom-big{
@@ -58,7 +68,7 @@
 			/*background-color: #33ddff;*/
 			/*background-color: #99ccff;*/
 			/*border-color: #99ccff;*/
-			box-shadow: 0px 0px 20px 5px #3366ff;
+			box-shadow: 0px 0px 20px 5px @blue;
 
 			/*-webkit-transform: scale(1, 1);*/
 		}
@@ -66,7 +76,7 @@
 	.detail-wrap{
 		height: 200px;
 		margin-top: 50px;
-		text-align: center;
+		.center;
 	}
 	.detail{
 		/*让这个div居中*/
@@ -74,15 +84,20 @@
 		width: 80px;
 		height: 80px;
 		line-height: 80px;
-		border-radius: 46px;
+		.border-radius(46px);
 		border-style: solid;
 		border-width: 5px;
-		background-color: #3366ff;
+		background-color: @blue;
 		/*background-image: radial-gradient(circle,#3366ff,#33ddff);*/
 		/*background-image: radial-gradient(40px circle at center center, #3366ff, #33ddff);*/
 		color: #ffffff;
 		font-size: 13px;
 		animation: zoom-big 2s infinite alternate;
+	}
+	.test-flex{
+		width: 0;
+		height: 0;
+		display: flex;
 	}
 </style>
 
