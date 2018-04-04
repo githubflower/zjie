@@ -1,6 +1,6 @@
 <template>
 	<div class="study">
-		<h6>遇到的问题：</h6>
+		<h3>遇到的问题：</h3>
 		<dl>
 
 			<dt>1.npm run dev开启本地服务后浏览器可以正常访问，但是用手机访问不了index页面？</dt>
@@ -44,7 +44,8 @@ swiperOption: {
 				</pre>
 				</dd>
 				<dd>应该就是autoplay和loop一起使用时产生的bug，使用的时候注意一下就行了，当使用autoplay后如果需要循环则loop需要省略掉，如果不想循环则配置loop：false也不会有问题；</dd>
-			
+			<dt>5.将项目部署到github之后，页面里通过样式引入的图片失效</dt>
+			<dd>将全局的assetsPublicPath: "/"改为"./"之后导致webpack处理css中图片路径的时候出问题，通过修改css合并的配置-增加ExtractTextPlugin.extract({publicPath: ../../})解决</dd>
 		</dl>
 	</div>
 </template>

@@ -92,7 +92,7 @@
 		/*background-image: radial-gradient(40px circle at center center, #3366ff, #33ddff);*/
 		color: #ffffff;
 		font-size: 13px;
-		animation: zoom-big 2s infinite alternate;
+		animation: zoom-big 1s infinite alternate;
 	}
 	.test-flex{
 		width: 0;
