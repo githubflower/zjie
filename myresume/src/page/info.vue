@@ -38,6 +38,7 @@
 </script>
 <style type="text/css" scoped>
 	.info{
+		padding: 15px;
 		font-size: 13px;
 	}
 	li{
