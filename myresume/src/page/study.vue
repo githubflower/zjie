@@ -46,6 +46,8 @@ swiperOption: {
 				<dd>应该就是autoplay和loop一起使用时产生的bug，使用的时候注意一下就行了，当使用autoplay后如果需要循环则loop需要省略掉，如果不想循环则配置loop：false也不会有问题；</dd>
 			<dt>5.将项目部署到github之后，页面里通过样式引入的图片失效</dt>
 			<dd>将全局的assetsPublicPath: "/"改为"./"之后导致webpack处理css中图片路径的时候出问题，通过修改css合并的配置-增加ExtractTextPlugin.extract({publicPath: ../../})解决</dd>
+			<dt>6.在跨域的情况下，子iframe如何获取父窗口的url完整地址？</dt>
+			<dd>在跨域的情况下，window.parent是会报错的，1.可以在父窗口中设置iframe的name属性，然后在子iframe中通过window.name获取参数；2.可以通过document.referrer获取，但是这种方式有1个弊端，那就是url后面的hash值是拿不到的，如果确定父窗口url中不会有#hash可以用此方法，否则只能在父窗口中设置子iframe的src时传递相关参数</dd>
 		</dl>
 	</div>
 </template>
